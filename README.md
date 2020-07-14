@@ -17,7 +17,7 @@ code for the endpoints is located in
 - /api/notifications/{user_id}/by-user GET get list of notifications by user (protected route)
 - /api/notifications/delete-all GET delete all notifications for all users (protected route)
 
-/api/create-test-users GET  create 100 test users (protected route)
-/api/yelp-api GET  connect to external api
+- /api/create-test-users GET  create 100 test users (protected route)
+- /api/yelp-api GET  connect to external api
 
 
