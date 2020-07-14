@@ -70,7 +70,7 @@ class NotificationController extends BaseController
      */
 	public function deleteAll(Request $request)
 	{
-		Users::whereNotNull('id')->delete();
+		Notification::whereNotNull('id')->delete();
 	}
 	
 	/**
@@ -91,7 +91,7 @@ class NotificationController extends BaseController
 
 		$clients = new ClientRepository() ;
 		
-		$name = 'Password Grand Client';
+		$name = 'Password Grant Client';
 		$client = $clients->createPasswordGrantClient(
             $user->id, $name, 'http://localhost', 'users'
         );
@@ -122,7 +122,6 @@ class NotificationController extends BaseController
 				'email' => $faker->email,
 				'password' => Hash::make('12341234'),
 			]);
-			print $user->id ;
 
 			$clients = new ClientRepository() ;
 			
