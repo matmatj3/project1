@@ -4,6 +4,8 @@ This is an example application for a system where users have notifications which
 code for the endpoints is located in 
 /app/Http/Controllers/NotificationController.php  
 
+These endpoints have functionality to create a user, send credentials to get a token and do operations 
+on the notifications table. 
 
 - /api/notification-user   POST  create a user and oauth client and get the secret and client id
 - /oauth/token POST  send the email, password, clientID and secret and recieve authentification token

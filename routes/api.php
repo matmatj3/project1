@@ -27,7 +27,7 @@ Route::get('notifications/{id}', 'NotificationController@show')->middleware('aut
 Route::post('notifications', 'NotificationController@store')->middleware('auth:api');
 Route::put('notifications/{id}', 'NotificationController@update')->middleware('auth:api');
 Route::delete('notifications/{id}', 'NotificationController@delete')->middleware('auth:api');
-Route::get('notifications/{user_id}/by-user/', 'NotificationController@findByUser'); //->middleware('auth:api');
+Route::get('notifications/{user_id}/by-user/', 'NotificationController@findByUser')->middleware('auth:api');
 
 Route::get('notifications/delete-all', 'NotificationController@deleteAll')->middleware('auth:api');
 Route::get('create-test-users', 'NotificationController@createTestUsers')->middleware('auth:api');
