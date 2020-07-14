@@ -1,6 +1,6 @@
 
 This is an example application for a system where users have notifications which are managed through a REST api 
-
+ 
 code for the endpoints is located in 
 /app/Http/Controllers/NotificationController.php  
 
