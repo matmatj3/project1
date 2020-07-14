@@ -20,16 +20,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('test', 'TestController@test');
 
-Route::post('registerNotificationUser', 'NotificationController@registerNotificationUser');
+Route::post('notification-user', 'NotificationController@registerNotificationUser');
 
 Route::get('notifications', 'NotificationController@index')->middleware('auth:api');
 Route::get('notifications/{id}', 'NotificationController@show')->middleware('auth:api');
 Route::post('notifications', 'NotificationController@store')->middleware('auth:api');
 Route::put('notifications/{id}', 'NotificationController@update')->middleware('auth:api');
 Route::delete('notifications/{id}', 'NotificationController@delete')->middleware('auth:api');
-Route::get('notificationsByUser/{user_id}', 'NotificationController@findById')->middleware('auth:api');
+Route::get('notifications/{user_id}/by-user/', 'NotificationController@findByUser'); //->middleware('auth:api');
 
-Route::get('deleteAll', 'NotificationController@deleteAll')->middleware('auth:api');
-Route::get('createTestUsers', 'NotificationController@createTestUsers')->middleware('auth:api');
-Route::get('yelpApi', 'NotificationController@yelpApi');
+Route::get('notifications/delete-all', 'NotificationController@deleteAll')->middleware('auth:api');
+Route::get('create-test-users', 'NotificationController@createTestUsers')->middleware('auth:api');
+Route::get('yelp-api', 'NotificationController@yelpApi');
 
