@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Routing\Controller as BaseController;
 use Laravel\Passport\Passport;
 use App\Notification;
-use Illuminate\Routing\Controller as BaseController;
+use App\User;
+use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Hash;
+use Laravel\Passport\ClientRepository;
+use Faker\Factory as Faker;
 
 class NotificationController extends BaseController
 {
@@ -48,6 +53,27 @@ class NotificationController extends BaseController
     }
 	
 	/**
+     * find notifications by user_id  
+     *
+     * 
+     */
+	public function findByUser($user_id)
+	{
+		$Notification = Notification::where('user_id', $user_id)->get();
+		return $Notification;
+	}
+	
+	/**
+     * delete all notifications for all users
+     *
+     * 
+     */
+	public function deleteAll(Request $request)
+	{
+		Users::whereNotNull('id')->delete();
+	}
+	
+	/**
      * creates a user and password grant oauth client  
 	 * the email, password, clientID and secret can be passed to 
 	 * /oauth/token to get the authentication token 
@@ -69,7 +95,7 @@ class NotificationController extends BaseController
 		$client = $clients->createPasswordGrantClient(
             $user->id, $name, 'http://localhost', 'users'
         );
-		print "<pre>".print_r($client);
+		//print "<pre>".print_r($client);
 		
 		$response = new stdClass();		
 		$response->user_id = $user->id;
@@ -79,6 +105,34 @@ class NotificationController extends BaseController
 		
 	}
 
+	/**
+     * Creates 100 test users with fake data created by the faker library 
+     *
+     * 
+     */
+	public function createTestUsers()
+	{
+		
+		$faker = Faker::create();
+		
+		for ($i = 0; $i < 100; $i++)
+		{
+			$user = User::create([
+				'name' => $faker->name,
+				'email' => $faker->email,
+				'password' => Hash::make('12341234'),
+			]);
+			print $user->id ;
+
+			$clients = new ClientRepository() ;
+			
+			$name = 'Password Grand Client';
+			$client = $clients->createPasswordGrantClient(
+				$user->id, $name, 'http://localhost', 'users'
+			);
+			
+		}
+	}
 	
 	/**
      * Displays response from yelp api to demonstrate an api connection. 

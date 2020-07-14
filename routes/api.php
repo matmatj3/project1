@@ -20,9 +20,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('test', 'TestController@test');
 
-Route::post('users', 'UserController@store');
-Route::post('users/login', 'UserController@login');
-
 Route::post('registerNotificationUser', 'NotificationController@registerNotificationUser');
 
 Route::get('notifications', 'NotificationController@index')->middleware('auth:api');
@@ -30,3 +27,9 @@ Route::get('notifications/{id}', 'NotificationController@show')->middleware('aut
 Route::post('notifications', 'NotificationController@store')->middleware('auth:api');
 Route::put('notifications/{id}', 'NotificationController@update')->middleware('auth:api');
 Route::delete('notifications/{id}', 'NotificationController@delete')->middleware('auth:api');
+Route::get('notificationsByUser/{user_id}', 'NotificationController@findById')->middleware('auth:api');
+
+Route::get('deleteAll', 'NotificationController@deleteAll')->middleware('auth:api');
+Route::get('createTestUsers', 'NotificationController@createTestUsers')->middleware('auth:api');
+Route::get('yelpApi', 'NotificationController@yelpApi');
+
