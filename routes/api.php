@@ -17,3 +17,16 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('test', 'TestController@test');
+
+Route::post('users', 'UserController@store');
+Route::post('users/login', 'UserController@login');
+
+Route::post('registerNotificationUser', 'NotificationController@registerNotificationUser');
+
+Route::get('notifications', 'NotificationController@index')->middleware('auth:api');
+Route::get('notifications/{id}', 'NotificationController@show')->middleware('auth:api');
+Route::post('notifications', 'NotificationController@store')->middleware('auth:api');
+Route::put('notifications/{id}', 'NotificationController@update')->middleware('auth:api');
+Route::delete('notifications/{id}', 'NotificationController@delete')->middleware('auth:api');
