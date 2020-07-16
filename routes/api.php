@@ -18,7 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('test', 'TestController@test');
+
 
 Route::post('notification-user', 'NotificationController@registerNotificationUser');
 
