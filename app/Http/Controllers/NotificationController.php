@@ -17,7 +17,7 @@ class NotificationController extends BaseController
 	 /**
      * Basic REST functions for notifications
      *
-     * 
+     * @return App\Notification
      */
     public function index()
     {
@@ -26,7 +26,6 @@ class NotificationController extends BaseController
  
     public function show($id)
     {
-		//$res = Notification::find($id) ;
 
         return Notification::find($id);
     }
@@ -55,7 +54,7 @@ class NotificationController extends BaseController
 	/**
      * find notifications by user_id  
      *
-     * 
+     * @return App\Notification
      */
 	public function findByUser($user_id)
 	{
@@ -66,7 +65,7 @@ class NotificationController extends BaseController
 	/**
      * delete all notifications for all users
      *
-     * 
+     * @return void
      */
 	public function deleteAll(Request $request)
 	{
@@ -78,7 +77,8 @@ class NotificationController extends BaseController
 	 * the email, password, clientID and secret can be passed to 
 	 * /oauth/token to get the authentication token 
      *
-     * 
+     * @param Request
+	 * @return object
      */
 	public function registerNotificationUser(Request $request)
 	{
@@ -87,7 +87,6 @@ class NotificationController extends BaseController
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-		print $user->id ;
 
 		$clients = new ClientRepository() ;
 		
@@ -108,7 +107,7 @@ class NotificationController extends BaseController
 	/**
      * Creates 100 test users with fake data created by the faker library 
      *
-     * 
+     * @return void
      */
 	public function createTestUsers()
 	{
@@ -140,7 +139,7 @@ class NotificationController extends BaseController
      */
 	public function yelpApi()
 	{
-		print "connecting to api:<br>";
+		
 		
 		$token = 'WlmH5ynCSPZI8lm4zAlNvaDWaG4Y2N28tsoeRijvia7227MzVv1DnZ6fsyyeC2sSxk3nnBW7VPQztP4nMawoCe_Z5I2UunYuQhldK5kWdfCn9e_AGIzlCu7zNdQHX3Yx';
 		$client = new Client();
@@ -152,7 +151,8 @@ class NotificationController extends BaseController
 		'Content-type' => 'application/json'
 		]]);
 
-		print "<pre>".json_encode(json_decode($res->getBody()), JSON_PRETTY_PRINT);
+		
+		return $res->getBody();
 
 	}
 	
